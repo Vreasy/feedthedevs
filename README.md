@@ -28,6 +28,7 @@ DEVELOPER1*
  
  "Added a cool way to delete ALL your data with one click!"
   Give Feedback:     + Pizza          + Tomatoe
+  
 -------------------------------------------------------------------------------------------
 
 more info: martin@vreasy.com or victor@vreasy.com
