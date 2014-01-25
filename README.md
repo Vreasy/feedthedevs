@@ -27,6 +27,7 @@ DEVELOPER1*
  3 tomatoes)
  
  "Added a cool way to delete ALL your data with one click!"
+  
   Give Feedback:     + Pizza          + Tomatoe
   
 -------------------------------------------------------------------------------------------
