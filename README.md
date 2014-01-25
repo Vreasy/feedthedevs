@@ -7,7 +7,7 @@ At Vreasy we love hacks - hell....we practically ARE hacks.
  
 And what do you get when you join a Hack and Competition?
  
-You get a .....   Hackatitioin  -- a hacking competition.   May the best hack win!
+You get a .....   HACKATITION -- a hacking competition.   May the best hack win!
  
  
 *Prizes*:   1st Prize: Free Weekend Stay in a historic medieval apartment in the center of Rome! Run by Vreasy.   2nd Prize:  Free weekend stay on the Vreasy Startup Boat in Barcelona Harbour!
@@ -16,6 +16,16 @@ You get a .....   Hackatitioin  -- a hacking competition.   May the best hack wi
  
 *Rules*:     we hate rules....BUT... You can use any technology you want but....we are an ANGULAR  and node.js company
  
-*Project Spec*:  we'll publish the specs here on Monday.
- 
-more info: victor@vreasy.com
+*Project Spec*:  Super simple:  Interface to our github projects' appropriate changelog and display a list of developer gravatar profile pics with a one liner new feature description.   The users of our app can give feedback by giving pizza or tomatoes to the dev.  There's a "New Stuff" icon that show up on the app's landing page when new changes are viewable.
+
+eg:
+-------------------------------------------------------------------------------
+*PIC OF THAT        "Added a cool way to delete ALL your data with one click!"
+UGLY MUTT
+DEVELOPER1*         Give Feedback:     + Pizza          + Tomatoe
+
+(5 pizzas
+ 3 tomatoes)
+------------------------------------------------------------------------------
+
+more info: martin@vreasy.com or victor@vreasy.com
