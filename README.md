@@ -19,13 +19,13 @@ You get a .....   HACKATITION -- a hacking competition.   May the best hack win!
 *Project Spec*:  Super simple:  Interface to our github projects' appropriate changelog and display a list of developer gravatar profile pics with a one liner new feature description.   The users of our app can give feedback by giving pizza or tomatoes to the dev.  There's a "New Stuff" icon that show up on the app's landing page when new changes are viewable.
 
 eg:
--------------------------------------------------------------------------------
-*PIC OF THAT        "Added a cool way to delete ALL your data with one click!"
+-------------------------------------------------------------------------------------------
+*PIC OF THAT                   "Added a cool way to delete ALL your data with one click!"
 UGLY MUTT
-DEVELOPER1*         Give Feedback:     + Pizza          + Tomatoe
+DEVELOPER1*                      Give Feedback:     + Pizza          + Tomatoe
 
 (5 pizzas
  3 tomatoes)
-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------
 
 more info: martin@vreasy.com or victor@vreasy.com
