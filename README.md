@@ -20,12 +20,14 @@ You get a .....   HACKATITION -- a hacking competition.   May the best hack win!
 
 eg:
 -------------------------------------------------------------------------------------------
-*PIC OF THAT                   "Added a cool way to delete ALL your data with one click!"
+*PIC OF THAT                   
 UGLY MUTT
-DEVELOPER1*                      Give Feedback:     + Pizza          + Tomatoe
-
+DEVELOPER1*                      
 (5 pizzas
  3 tomatoes)
+ 
+ "Added a cool way to delete ALL your data with one click!"
+  Give Feedback:     + Pizza          + Tomatoe
 -------------------------------------------------------------------------------------------
 
 more info: martin@vreasy.com or victor@vreasy.com
