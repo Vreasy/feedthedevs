@@ -1,0 +1,38 @@
+<div class="row">
+    <div class="col-md-2">
+        <div class="row">
+            <div class="col-md-12 col-md-offset-2">
+                <img src="{{log.user.image}}" class="img-rounded profile">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-md-offset-2">
+                <span style="font-weight: bold">{{log.user.pizzas}}</span> <img src="img/pizza-icon.png" class="icon">
+                <span style="font-weight: bold">{{log.user.tomatoes}}</span> <img src="img/tomato-icon.png" class="icon">
+            </div>
+        </div>
+    </div>
+    <div class="col-md-10">
+        <dl>
+            <dt>
+                {{log.heading}}
+            </dt>
+            <dd>
+                <div class="text-right" >
+                    <span class="text-italic pull-left">{{log.user.name}}</span>
+                    <span class="pull-left">&nbsp;authored {{log.daysAgo}} days ago </span>
+                    <span ng-show="ismouseover" >
+                        <span ng-show="!log.pizza && !log.tomato">
+                            <a href="#" ng-click="addPizza()"><i class="fa fa-plus"></i><img src="img/pizza-icon.png" class="icon"></a>
+                            <a href="#" ng-click="addTomato()"><i class="fa fa-plus"></i><img src="img/tomato-icon.png" class="icon"></a>
+                        </span>
+                        <span ng-show="log.pizza || log.tomato ">
+                            <a href="#" ng-show="log.pizza" ng-click="removePizza()"><i class="fa fa-minus"></i><img src="img/pizza-icon.png" class="icon"></a>
+                            <a href="#" ng-show="log.tomato" ng-click="removeTomato()"><i class="fa fa-minus"></i><img src="img/tomato-icon.png" class="icon"></a>
+                        </span>
+                    </span>
+                </div>
+            </dd>
+        </dl>
+    </div>
+</div>

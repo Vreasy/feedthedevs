@@ -1,1 +1,19 @@
+<div class="row">
+    <div class="col-md-6 col-md-offset-1">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                Commits in the past 1 month
+            </div>
+            <div class="panel-body">
+                <ul class="list-group hover" >
+                    <li class="list-group-item" ng-repeat="changeLog in changeLogData"
+                        ng-mouseover="mouseOver = true" ng-mouseleave="mouseOver = false">
 
+                        <changelog log="changeLog" ismouseover="mouseOver"></changelog>
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
