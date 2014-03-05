@@ -1,4 +1,4 @@
-var ChangeLogListCtrl = function ($scope, $location) {
+var ChangeLogListCtrl = function ($scope, $location , CookieManager, WebServiceAPI) {
     // initialize static data
     $scope.users = [
         {
@@ -51,6 +51,34 @@ var ChangeLogListCtrl = function ($scope, $location) {
 
     ];
 
+    $scope.token = CookieManager.getAuthToken();
+
 };
+
+var LoginCtrl = function ($scope, $location , CookieManager, WebServiceAPI) {
+
+    $scope.showLoginBox = false;
+
+    //check if Authentication token exists
+    if (CookieManager.getAuthToken()) {
+        $location.path("/changelog");
+    } else {
+        $scope.showLoginBox = true;
+    }
+
+    $scope.signin = function() {
+        var postData = { username : $scope.login.username, password : $scope.login.password } ;
+        WebServiceAPI.post(SERVER_URL + "/login", postData,  function(data, status) {
+            if (data.id != 0) {
+                CookieManager.setAuthToken(data.token);
+                $location.path("/changelog");
+            } else {
+                $scope.errorMessage = data.errorMessage;
+            }
+        }, function() {
+            $scope.errorMessage = "Error while communicating with the server";
+        })
+    }
+}
 
 

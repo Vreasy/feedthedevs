@@ -1,0 +1,25 @@
+<div class="row" ng-show="!showLoginBox">
+    <div class="col-md-4 col-md-offset-4" >
+        <H3> Checking if you are logged in. </H3>
+    </div>
+    <div class="col-md-1 col-md-offset-5">
+        <img href="#" src="img/ajax-loader.gif">
+    </div>
+</div>
+
+<div class="container" ng-show="showLoginBox">
+
+    <div class="form-signin">
+        <h2>Please sign in</h2>
+        <input ng-model="login.username" type="text" class="form-control" placeholder="Email address/ User Id" autofocus>
+        <input ng-model="login.password" type="password" class="form-control" placeholder="Password" >
+        <label class="checkbox">{{login.user}}
+            <input type="checkbox" value="remember-me"> Remember me
+        </label>
+        <button class="btn btn-lg btn-primary btn-block" ng-click="signin()">Sign in</button>
+        <div class="bg-danger" >
+            <p class="bg-danger bg-danger-style" ng-show="errorMessage">{{errorMessage}}</p>
+        </div>
+    </div>
+
+</div> <!-- /container -->
