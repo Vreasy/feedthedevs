@@ -49,11 +49,14 @@ myApp.factory("WebServiceAPI", function($http) {
 myApp.factory("CookieManager", function($cookieStore, $cookies, $http) {
     return {
         setAuthToken : function (token) {
-            $http.defaults.headers.common['Authentication'] = "token " + token;
+            $http.defaults.headers.common['Authorization'] = "token " + token;
             $cookieStore.put('token', token);
         },
         getAuthToken : function() {
-            $http.defaults.headers.common['Authentication'] = "token " + $cookies.token;
+            if ($cookies.token) {
+                var token = $cookies.token.replace(/\"/g, "");
+                $http.defaults.headers.common['Authorization'] = "token " + token ;
+            }
             return $cookies.token;
         }
     }

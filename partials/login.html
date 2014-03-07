@@ -10,6 +10,9 @@
 <div class="container" ng-show="showLoginBox">
 
     <div class="form-signin">
+        <div class="bg-danger" >
+            <p class="bg-danger bg-danger-style" ng-show="errorMessage">{{errorMessage}}</p>
+        </div>
         <h2>Please sign in</h2>
         <input ng-model="login.username" type="text" class="form-control" placeholder="Email address/ User Id" autofocus>
         <input ng-model="login.password" type="password" class="form-control" placeholder="Password" >
@@ -17,9 +20,6 @@
             <input type="checkbox" value="remember-me"> Remember me
         </label>
         <button class="btn btn-lg btn-primary btn-block" ng-click="signin()">Sign in</button>
-        <div class="bg-danger" >
-            <p class="bg-danger bg-danger-style" ng-show="errorMessage">{{errorMessage}}</p>
-        </div>
     </div>
 
 </div> <!-- /container -->

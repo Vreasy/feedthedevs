@@ -50,8 +50,14 @@ var ChangeLogListCtrl = function ($scope, $location , CookieManager, WebServiceA
         }
 
     ];
-
     $scope.token = CookieManager.getAuthToken();
+
+    WebServiceAPI.query(SERVER_URL + "/events", function(data, status) {
+        $scope.data = data;
+    }, function() {
+
+    })
+
 
 };
 
@@ -68,14 +74,14 @@ var LoginCtrl = function ($scope, $location , CookieManager, WebServiceAPI) {
 
     $scope.signin = function() {
         var postData = { username : $scope.login.username, password : $scope.login.password } ;
-        WebServiceAPI.post(SERVER_URL + "/login", postData,  function(data, status) {
+        WebServiceAPI.post(SERVER_URL + "/login", postData, {} , function(data, status) {
             if (data.id != 0) {
                 CookieManager.setAuthToken(data.token);
                 $location.path("/changelog");
             } else {
                 $scope.errorMessage = data.errorMessage;
             }
-        }, function() {
+        }, function(error) {
             $scope.errorMessage = "Error while communicating with the server";
         })
     }
