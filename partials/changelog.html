@@ -1,4 +1,4 @@
-{{token}}
+{{data | json}}
 <div class="row">
     <div class="col-md-6 col-md-offset-1">
         <div class="panel panel-info">
@@ -7,10 +7,10 @@
             </div>
             <div class="panel-body">
                 <ul class="list-group hover" >
-                    <li class="list-group-item" ng-repeat="changeLog in changeLogData"
+                    <li class="list-group-item" ng-repeat="event in events"
                         ng-mouseover="mouseOver = true" ng-mouseleave="mouseOver = false">
 
-                        <changelog log="changeLog" ismouseover="mouseOver"></changelog>
+                        <changelog event="event" ismouseover="mouseOver"></changelog>
 
                     </li>
                 </ul>

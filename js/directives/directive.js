@@ -2,30 +2,30 @@ myApp.directive('changelog', function() {
     return {
         restrict: 'E',
         scope: {
-            log : "=",
+            event : "=",
             ismouseover:"="
         },
         templateUrl: 'partials/changelog-directive.html',
         link: function(scope, element) {
 
             scope.addPizza = function() {
-                scope.log.user.pizzas++;
-                scope.log.pizza = true;
+                scope.event.actor.pizzas++;
+                scope.event.pizza = true;
             }
 
             scope.addTomato = function() {
-                scope.log.user.tomatoes++;
-                scope.log.tomato = true;
+                scope.event.actor.tomatoes++;
+                scope.event.tomato = true;
             }
 
             scope.removePizza = function() {
-                scope.log.user.pizzas--;
-                scope.log.pizza = false;
+                scope.event.actor.pizzas--;
+                scope.event.pizza = false;
             }
 
             scope.removeTomato = function() {
-                scope.log.user.tomatoes--;
-                scope.log.tomato = false;
+                scope.event.actor.tomatoes--;
+                scope.event.tomato = false;
             }
         }
     };

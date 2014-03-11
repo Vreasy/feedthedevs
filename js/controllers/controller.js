@@ -1,23 +1,6 @@
 var ChangeLogListCtrl = function ($scope, $location , CookieManager, WebServiceAPI) {
     // initialize static data
-    $scope.users = [
-        {
-            name: "martin",
-            image:"img/martin.jpeg",
-            pizzas:5,
-            tomatoes:3
-        }, {
-            name: "mauro",
-            image:"img/mauro.jpeg",
-            pizzas:10,
-            tomatoes:1
-        }, {
-            name: "pablo",
-            image:"img/pablo.jpeg",
-            pizzas:21,
-            tomatoes:5
-        }
-    ]
+    $scope.users = [];
 
     $scope.changeLogData = [
         {
@@ -52,12 +35,12 @@ var ChangeLogListCtrl = function ($scope, $location , CookieManager, WebServiceA
     ];
     $scope.token = CookieManager.getAuthToken();
 
+    $scope.events = [];
     WebServiceAPI.query(SERVER_URL + "/events", function(data, status) {
-        $scope.data = data;
+        $scope.events = data;
     }, function() {
 
     })
-
 
 };
 
