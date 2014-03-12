@@ -1,47 +1,37 @@
-var ChangeLogListCtrl = function ($scope, $location , CookieManager, WebServiceAPI) {
+var ChangeLogListCtrl = function ($scope, $location , CookieManager, $filter, WebServiceAPI, $q) {
     // initialize static data
-    $scope.users = [];
-
-    $scope.changeLogData = [
-        {
-            heading : "Added a cool way to delete ALL your data with one click!",
-            user : $scope.users[0],
-            daysAgo:"1",
-            pizza: true,
-            tomato: false
-        },
-        {
-            heading : "Added a rent paid notification on the dashboard",
-            user : $scope.users[1],
-            daysAgo:"10",
-            pizza: false,
-            tomato: false
-        },
-        {
-            heading : "Customer Dashboard - running ticker",
-            user : $scope.users[2],
-            daysAgo:"21",
-            pizza: false,
-            tomato: true
-        },
-        {
-            heading : "Created a new payment due report",
-            user : $scope.users[1],
-            daysAgo:"25",
-            pizza: false,
-            tomato: false
-        }
-
-    ];
     $scope.token = CookieManager.getAuthToken();
 
+    $scope.actors = [];
     $scope.events = [];
-    WebServiceAPI.query(SERVER_URL + "/events", function(data, status) {
-        $scope.events = data;
-    }, function() {
 
+    $scope.showLoader = true;
+    $scope.errorLoading = false;
+
+    var deferActorLoad = $q.defer();
+    var deferEventsLoad = $q.defer();
+
+    WebServiceAPI.query(SERVER_URL + "/actors", function(data, status) {
+        $scope.actors = data;
+        deferActorLoad.resolve();
+    }, function() {
+        $scope.errorLoading = true;
     })
 
+    WebServiceAPI.query(SERVER_URL + "/events", function(data, status) {
+        $scope.events = data;
+        deferEventsLoad.resolve();
+    }, function() {
+        $scope.errorLoading = true;
+    })
+
+    $q.all([deferActorLoad.promise, deferEventsLoad.promise]).then (function() {
+        for (var i =0 ; i < $scope.events.length; i++) {
+            var actorIndex = $filter("getIndexById")($scope.actors, $scope.events[i].actor.id);
+            $scope.events[i].actor = $scope.actors[actorIndex];
+        }
+        $scope.showLoader = false;
+    })
 };
 
 var LoginCtrl = function ($scope, $location , CookieManager, WebServiceAPI) {

@@ -61,3 +61,27 @@ myApp.factory("CookieManager", function($cookieStore, $cookies, $http) {
         }
     }
 })
+
+myApp.filter('getById', function() {
+    return function(input, id) {
+        var i, len=input.length;
+        for (i = 0; i < len; i++) {
+            if (+input[i].id == +id) {
+                return input[i];
+            }
+        }
+        return null;
+    }
+});
+
+myApp.filter("getIndexById", function() {
+    return function(input, id) {
+        var i, len=input.length;
+        for (i = 0; i < len; i++) {
+            if (+input[i].id == +id) {
+                return i;
+            }
+        }
+        return null;
+    }
+});
