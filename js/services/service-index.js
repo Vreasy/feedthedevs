@@ -58,7 +58,14 @@ myApp.factory("CookieManager", function($cookieStore, $cookies, $http) {
                 $http.defaults.headers.common['Authorization'] = "token " + token ;
             }
             return $cookies.token;
+        },
+        setGitLogin : function (login) {
+            $cookieStore.put('gitlogin', login);
+        },
+        getGitLogin : function() {
+            return $cookies.gitlogin.replace(/\"/g, "");
         }
+
     }
 })
 

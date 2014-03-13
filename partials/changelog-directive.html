@@ -21,14 +21,18 @@
                 <div class="text-right" >
                     <span class="text-italic pull-left">{{event.actor.login}}</span>
                     <span class="pull-left">&nbsp;authored {{event.daysAgo}} days ago </span>
+                    <div ng-show="!ismouseover">
+                        <span ng-show="event.fed_With == 'pizza'"><img src="img/pizza-icon.png" class="icon"></span>
+                        <span ng-show="event.fed_With == 'tomato'"><img src="img/tomato-icon.png" class="icon"></span>
+                    </div>
                     <span ng-show="ismouseover" >
-                        <span ng-show="!log.pizza && !log.tomato">
+                        <span ng-show="event.fed_With == ''">
                             <a href="#" ng-click="addPizza()"><i class="fa fa-plus"></i><img src="img/pizza-icon.png" class="icon"></a>
                             <a href="#" ng-click="addTomato()"><i class="fa fa-plus"></i><img src="img/tomato-icon.png" class="icon"></a>
                         </span>
-                        <span ng-show="log.pizza || log.tomato ">
-                            <a href="#" ng-show="log.pizza" ng-click="removePizza()"><i class="fa fa-minus"></i><img src="img/pizza-icon.png" class="icon"></a>
-                            <a href="#" ng-show="log.tomato" ng-click="removeTomato()"><i class="fa fa-minus"></i><img src="img/tomato-icon.png" class="icon"></a>
+                        <span ng-show="event.fed_With !== ''">
+                            <a href="#" ng-show="event.fed_With == 'pizza'" ng-click="removePizza()"><i class="fa fa-minus"></i><img src="img/pizza-icon.png" class="icon"></a>
+                            <a href="#" ng-show="event.fed_With == 'tomato'" ng-click="removeTomato()"><i class="fa fa-minus"></i><img src="img/tomato-icon.png" class="icon"></a>
                         </span>
                     </span>
                 </div>

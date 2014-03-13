@@ -1,4 +1,4 @@
-myApp.directive('changelog', function() {
+myApp.directive('changelog', function(WebServiceAPI) {
     return {
         restrict: 'E',
         scope: {
@@ -10,22 +10,45 @@ myApp.directive('changelog', function() {
 
             scope.addPizza = function() {
                 scope.event.actor.pizzas++;
-                scope.event.pizza = true;
+                scope.showLoader = true;
+                scope.rate_event(scope.event, "pizza", function(){
+                    scope.event.fed_With = "pizza";
+                    scope.showLoader = false;
+                } , function() {  });
             }
 
             scope.addTomato = function() {
                 scope.event.actor.tomatoes++;
-                scope.event.tomato = true;
+                scope.showLoader = true;
+                scope.rate_event(scope.event, "tomato", function(){
+                    scope.event.fed_With = "tomato";
+                    scope.showLoader = false;
+                } , function() {  });
             }
 
             scope.removePizza = function() {
                 scope.event.actor.pizzas--;
-                scope.event.pizza = false;
+                scope.showLoader = true;
+                scope.rate_event(scope.event, "-pizza", function(){
+                    scope.event.fed_With = "";
+                    scope.showLoader = false;
+                } , function() {  });
             }
 
             scope.removeTomato = function() {
                 scope.event.actor.tomatoes--;
-                scope.event.tomato = false;
+                scope.showLoader = true;
+                scope.rate_event(scope.event, "-tomato", function(){
+                    scope.event.fed_With = "";
+                    scope.showLoader = false;
+                } , function() {  });
+
+            }
+
+            scope.rate_event = function(event, feed_with, successCallback, errorCallback) {
+                var para = {event_id : event.id, feed_with : feed_with, actor_id : event.actor.id};
+                WebServiceAPI.post(SERVER_URL + "/rate_event", para, "",
+                    successCallback, errorCallback);
             }
         }
     };

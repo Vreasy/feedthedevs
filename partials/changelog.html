@@ -13,17 +13,32 @@
     <div class="col-md-6 col-md-offset-1">
         <div class="panel panel-info">
             <div class="panel-heading">
-                Commits in the past 1 month
+                Push Events
+                <div class="pull-right">
+                    <a ng-click="previousPage()" ng-show="page != 1">Previous |</a>
+                    <a ng-click="nextPage()">Next</a>
+                </div>
             </div>
-            <div class="panel-body">
-                <ul class="list-group hover" >
-                    <li class="list-group-item" ng-repeat="event in events"
-                        ng-mouseover="mouseOver = true" ng-mouseleave="mouseOver = false">
+            <div class="panel-body" ng-show="showPanelLoader">
+                <img href="#" src="img/ajax-loader.gif">
+            </div>
+            <div class="panel-body" ng-show="!showPanelLoader">
+                <div class="row">
+                    <ul class="list-group hover" >
+                        <li class="list-group-item" ng-repeat="event in events"
+                            ng-mouseover="mouseOver = true" ng-mouseleave="mouseOver = false">
 
-                        <changelog event="event" ismouseover="mouseOver"></changelog>
+                            <changelog event="event" ismouseover="mouseOver"></changelog>
 
-                    </li>
-                </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <div class="pull-right">
+                    <a ng-click="previousPage()" ng-show="page != 1">Previous |</a>
+                    <a ng-click="nextPage()">Next</a>
+                </div>
             </div>
         </div>
     </div>

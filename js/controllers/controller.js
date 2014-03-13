@@ -1,37 +1,57 @@
 var ChangeLogListCtrl = function ($scope, $location , CookieManager, $filter, WebServiceAPI, $q) {
     // initialize static data
     $scope.token = CookieManager.getAuthToken();
-
+    if (!$scope.token) {
+        $location.path("/login");
+    }
     $scope.actors = [];
     $scope.events = [];
+    $scope.page = 1;
 
     $scope.showLoader = true;
     $scope.errorLoading = false;
 
-    var deferActorLoad = $q.defer();
-    var deferEventsLoad = $q.defer();
+    $scope.loadEvents = function() {
+        $scope.showPanelLoader = true;
+        var param = { gitlogin : CookieManager.getGitLogin(), org: "Fitivity", pageno : $scope.page };
+        //store new actors and parse events from the gi ub api
+        WebServiceAPI.search(SERVER_URL + "/events", param , function(data, status) {
+            $scope.events = data;
 
-    WebServiceAPI.query(SERVER_URL + "/actors", function(data, status) {
-        $scope.actors = data;
-        deferActorLoad.resolve();
-    }, function() {
-        $scope.errorLoading = true;
-    })
+            //get saved actors
+            WebServiceAPI.query(SERVER_URL + "/actors", function(data, status) {
+                $scope.actors = data;
 
-    WebServiceAPI.query(SERVER_URL + "/events", function(data, status) {
-        $scope.events = data;
-        deferEventsLoad.resolve();
-    }, function() {
-        $scope.errorLoading = true;
-    })
+                //add actor reference to each event
+                for (var i =0 ; i < $scope.events.length; i++) {
+                    var actorIndex = $filter("getIndexById")($scope.actors, $scope.events[i].actor.id);
+                    $scope.events[i].actor = $scope.actors[actorIndex];
+                }
+                $scope.showLoader = false;
+                $scope.showPanelLoader = false;
 
-    $q.all([deferActorLoad.promise, deferEventsLoad.promise]).then (function() {
-        for (var i =0 ; i < $scope.events.length; i++) {
-            var actorIndex = $filter("getIndexById")($scope.actors, $scope.events[i].actor.id);
-            $scope.events[i].actor = $scope.actors[actorIndex];
+            }, function() {
+                $scope.errorLoading = true;
+            })
+        }, function() {
+            $scope.errorLoading = true;
+        })
+    }
+
+    $scope.nextPage = function() {
+        $scope.page++;
+        $scope.loadEvents();
+    }
+
+    $scope.previousPage = function() {
+        if ($scope.page != 1) {
+            $scope.page--;
+            $scope.loadEvents();
         }
-        $scope.showLoader = false;
-    })
+    }
+
+    $scope.loadEvents();
+
 };
 
 var LoginCtrl = function ($scope, $location , CookieManager, WebServiceAPI) {
@@ -50,6 +70,7 @@ var LoginCtrl = function ($scope, $location , CookieManager, WebServiceAPI) {
         WebServiceAPI.post(SERVER_URL + "/login", postData, {} , function(data, status) {
             if (data.id != 0) {
                 CookieManager.setAuthToken(data.token);
+                CookieManager.setGitLogin($scope.login.username);
                 $location.path("/changelog");
             } else {
                 $scope.errorMessage = data.errorMessage;
