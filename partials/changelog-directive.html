@@ -1,0 +1,45 @@
+<div class="row jtooltip" title="You Love It! Feed with Pizza!">
+    <div class="col-md-2">
+        <div class="row">
+            <div class="col-md-12 col-md-offset-2">
+                <img src="{{event.actor.avatar_url}}" class="img-rounded profile">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-md-offset-2">
+                <span style="font-weight: bold">{{event.actor.pizzas}}</span> <img src="img/pizza-icon.png" class="icon">
+                <span style="font-weight: bold">{{event.actor.tomatoes}}</span> <img src="img/tomato-icon.png" class="icon">
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <dl>
+            <dt>
+                {{event.payload.commits[0].message}}
+            </dt>
+            <dd>
+                {{event.repo.name}}
+                <div class="text-right pull-right" ng-show="ismouseover" >
+                        <span ng-show="event.fed_With == ''">
+                            <a href="#" ng-click="addPizza()"><i class="fa fa-plus"></i><img src="img/pizza-icon.png" class="icon"></a>
+                            <a href="#" ng-click="addTomato()"><i class="fa fa-plus"></i><img src="img/tomato-icon.png" class="icon"></a>
+                        </span>
+                        <span ng-show="event.fed_With !== ''">
+                            <a href="#" ng-show="event.fed_With == 'pizza'" ng-click="removePizza()"><i class="fa fa-minus"></i><img src="img/pizza-icon.png" class="icon"></a>
+                            <a href="#" ng-show="event.fed_With == 'tomato'" ng-click="removeTomato()"><i class="fa fa-minus"></i><img src="img/tomato-icon.png" class="icon"></a>
+                        </span>
+                </div>
+                <div class="text-right pull-right" ng-show="!ismouseover">
+                    <span ng-show="event.fed_With == 'pizza'"><img src="img/pizza-icon.png" class="icon"></span>
+                    <span ng-show="event.fed_With == 'tomato'"><img src="img/tomato-icon.png" class="icon"></span>
+                </div>
+            </dd>
+            <dd>
+                <div class="text-right" >
+                    <span class="text-italic pull-left">{{event.actor.login}}</span>
+                    <span class="pull-left">&nbsp;authored {{ getDaysAgo()}} days ago </span>
+                </div>
+            </dd>
+        </dl>
+    </div>
+</div>

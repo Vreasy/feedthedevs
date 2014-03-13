@@ -1,0 +1,31 @@
+img.profile {
+   height: 70px;
+   width: 70px;
+}
+
+img.icon {
+    height: 25px;
+    width: 25px;
+}
+
+heading-bold {
+    font-weight: bold;
+}
+
+.text-italic {
+    font-style: italic;
+}
+
+.hover :hover {
+   background-color: #F0F0F0 ;
+}
+
+.form-signin {
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+.bg-danger-style {
+    padding: 15px;
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html ng-app="feedthedevs">
+<head>
+    <title>Fed The Devs</title>
+    <!-- CSS -->
+    <link href="css/bootstrap/bootstrap.min.css" media="all" rel="stylesheet" type="text/css"/>
+    <link href="lib/font-awesome-4.0.3/css/font-awesome.css" media="all" rel="stylesheet" type="text/css"/>
+    <link href="css/style.css" media="all" rel="stylesheet" type="text/css"/>
+
+    <!-- JS Libs -->
+    <script type="text/javascript" src="lib/jquery/jquery-1.10.2.min.js"></script>
+
+    <script type="text/javascript" src="lib/angularjs/angular.min.js"></script>
+    <script type="text/javascript" src="lib/angularjs/angular-route.min.js"></script>
+    <script type="text/javascript" src="lib/angularjs/angular-resource.min.js"></script>
+    <script type="text/javascript" src="lib/angularjs/cookies.js"></script>
+
+    <script type="text/javascript" src="lib/bootstrap/bootstrap.min.js"></script>
+
+    <!-- CONFIG -->
+    <script type="text/javascript" src="js/config.js"></script>
+
+    <!-- AngularJS -->
+    <script type="text/javascript" src="js/services/service-index.js"></script>
+    <script type="text/javascript" src="js/controllers/controller.js"></script>
+    <script type="text/javascript" src="js/directives/directive.js"></script>
+
+</head>
+<body>
+<div class="navbar navbar-inverse" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Feed the Devs on Github</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li ng-show="loggedIn"><a href="#" ng-click="logout()">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid" role="main">
+    <div ng-view></div>
+</div>
+</body>
+</html>
