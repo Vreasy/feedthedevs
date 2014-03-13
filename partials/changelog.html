@@ -25,7 +25,7 @@
             <div class="panel-body" ng-show="!showPanelLoader">
                 <div class="row">
                     <ul class="list-group hover" >
-                        <li class="list-group-item" ng-repeat="event in events"
+                        <li class="list-group-item" ng-repeat="event in events | orderBy: '-created_at'"
                             ng-mouseover="mouseOver = true" ng-mouseleave="mouseOver = false">
 
                             <changelog event="event" ismouseover="mouseOver"></changelog>

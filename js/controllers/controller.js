@@ -1,5 +1,6 @@
-var ChangeLogListCtrl = function ($scope, $location , CookieManager, $filter, WebServiceAPI, $q) {
-    // initialize static data
+var ChangeLogListCtrl = function ($scope, $location , CookieManager, $filter, WebServiceAPI, $q, $rootScope) {
+
+    $rootScope.loggedIn = true;
     $scope.token = CookieManager.getAuthToken();
     if (!$scope.token) {
         $location.path("/login");
@@ -52,11 +53,24 @@ var ChangeLogListCtrl = function ($scope, $location , CookieManager, $filter, We
 
     $scope.loadEvents();
 
+    $rootScope.logout = function() {
+
+        WebServiceAPI.post(SERVER_URL + "/logout", {token : CookieManager.getAuthToken(), gitlogin : CookieManager.getGitLogin()} ,
+                            "",function() {
+                CookieManager.removeKeys();
+                $location.path("/login");
+         }, function() {
+                alert("Error logging out.")
+         });
+
+    }
+
 };
 
-var LoginCtrl = function ($scope, $location , CookieManager, WebServiceAPI) {
+var LoginCtrl = function ($scope, $location , CookieManager, WebServiceAPI, $rootScope) {
 
     $scope.showLoginBox = false;
+    $rootScope.loggedIn = false;
 
     //check if Authentication token exists
     if (CookieManager.getAuthToken()) {
@@ -71,6 +85,7 @@ var LoginCtrl = function ($scope, $location , CookieManager, WebServiceAPI) {
             if (data.id != 0) {
                 CookieManager.setAuthToken(data.token);
                 CookieManager.setGitLogin($scope.login.username);
+                $rootScope.loggedIn = true;
                 $location.path("/changelog");
             } else {
                 $scope.errorMessage = data.errorMessage;

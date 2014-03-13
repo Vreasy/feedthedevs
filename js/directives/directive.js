@@ -50,6 +50,13 @@ myApp.directive('changelog', function(WebServiceAPI) {
                 WebServiceAPI.post(SERVER_URL + "/rate_event", para, "",
                     successCallback, errorCallback);
             }
+
+            scope.getDaysAgo = function() {
+                var created_at = new Date(scope.event.created_at);
+                var today = new Date();
+                var diff = Math.round((today - created_at)/(1000*60*60*24),0);
+                return (diff != undefined)?diff:0;
+            }
         }
     };
 });

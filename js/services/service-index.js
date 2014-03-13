@@ -6,6 +6,7 @@ var myApp = angular.module("feedthedevs", ["ngResource", "ngRoute", "ngCookies"]
             otherwise({redirectTo: '/'});
     }]);
 
+
 myApp.factory("WebServiceAPI", function($http) {
     return {
         search: function(url, params, callback, errorcallback) {
@@ -53,17 +54,24 @@ myApp.factory("CookieManager", function($cookieStore, $cookies, $http) {
             $cookieStore.put('token', token);
         },
         getAuthToken : function() {
+            var token;
             if ($cookies.token) {
-                var token = $cookies.token.replace(/\"/g, "");
+                token = $cookies.token.replace(/\"/g, "");
                 $http.defaults.headers.common['Authorization'] = "token " + token ;
             }
-            return $cookies.token;
+            return token;
         },
         setGitLogin : function (login) {
             $cookieStore.put('gitlogin', login);
         },
         getGitLogin : function() {
             return $cookies.gitlogin.replace(/\"/g, "");
+        },
+        removeKeys: function() {
+            if ($cookies.gitlogin)
+                $cookieStore.remove("gitlogin");
+            if ($cookies.token)
+                $cookieStore.remove("token");
         }
 
     }
@@ -92,3 +100,4 @@ myApp.filter("getIndexById", function() {
         return null;
     }
 });
+
