@@ -3,7 +3,8 @@ myApp.directive('changelog', function(WebServiceAPI) {
         restrict: 'E',
         scope: {
             event : "=",
-            ismouseover:"="
+            ismouseover:"=",
+            error:"="
         },
         templateUrl: 'partials/changelog-directive.html',
         link: function(scope, element) {
@@ -14,7 +15,7 @@ myApp.directive('changelog', function(WebServiceAPI) {
                 scope.rate_event(scope.event, "pizza", function(){
                     scope.event.fed_With = "pizza";
                     scope.showLoader = false;
-                } , function() {  });
+                });
             }
 
             scope.addTomato = function() {
@@ -23,7 +24,7 @@ myApp.directive('changelog', function(WebServiceAPI) {
                 scope.rate_event(scope.event, "tomato", function(){
                     scope.event.fed_With = "tomato";
                     scope.showLoader = false;
-                } , function() {  });
+                });
             }
 
             scope.removePizza = function() {
@@ -32,7 +33,7 @@ myApp.directive('changelog', function(WebServiceAPI) {
                 scope.rate_event(scope.event, "-pizza", function(){
                     scope.event.fed_With = "";
                     scope.showLoader = false;
-                } , function() {  });
+                });
             }
 
             scope.removeTomato = function() {
@@ -41,14 +42,16 @@ myApp.directive('changelog', function(WebServiceAPI) {
                 scope.rate_event(scope.event, "-tomato", function(){
                     scope.event.fed_With = "";
                     scope.showLoader = false;
-                } , function() {  });
+                });
 
             }
 
             scope.rate_event = function(event, feed_with, successCallback, errorCallback) {
                 var para = {event_id : event.id, feed_with : feed_with, actor_id : event.actor.id};
                 WebServiceAPI.post(SERVER_URL + "/rate_event", para, "",
-                    successCallback, errorCallback);
+                    successCallback, function(error) {
+                        scope.error = error;
+                    });
             }
 
             scope.getDaysAgo = function() {

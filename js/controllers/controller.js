@@ -10,7 +10,7 @@ var ChangeLogListCtrl = function ($scope, $location , CookieManager, $filter, We
     $scope.page = 1;
 
     $scope.showLoader = true;
-    $scope.errorLoading = false;
+    $scope.errorMessage = "";
 
     $scope.loadEvents = function() {
         $scope.showPanelLoader = true;
@@ -31,11 +31,11 @@ var ChangeLogListCtrl = function ($scope, $location , CookieManager, $filter, We
                 $scope.showLoader = false;
                 $scope.showPanelLoader = false;
 
-            }, function() {
-                $scope.errorLoading = true;
+            }, function(error) {
+                $scope.errorMessage = (error)?error:"Error communication to the server.";
             })
-        }, function() {
-            $scope.errorLoading = true;
+        }, function(error) {
+            $scope.errorMessage = (error)?error:"Error communication to the server.";
         })
     }
 
@@ -60,7 +60,7 @@ var ChangeLogListCtrl = function ($scope, $location , CookieManager, $filter, We
                 CookieManager.removeKeys();
                 $location.path("/login");
          }, function() {
-                alert("Error logging out.")
+                $scope.errorMessage = "Error logging out.";
          });
 
     }
@@ -80,6 +80,7 @@ var LoginCtrl = function ($scope, $location , CookieManager, WebServiceAPI, $roo
     }
 
     $scope.signin = function() {
+        $scope.errorMessage = null;
         var postData = { username : $scope.login.username, password : $scope.login.password } ;
         WebServiceAPI.post(SERVER_URL + "/login", postData, {} , function(data, status) {
             if (data.id != 0) {

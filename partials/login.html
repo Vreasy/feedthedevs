@@ -13,11 +13,12 @@
         <div class="bg-danger" >
             <p class="bg-danger bg-danger-style" ng-show="errorMessage">{{errorMessage}}</p>
         </div>
-        <h2>Please sign in</h2>
+        <h2>Please sign in. </h2>
+        <small>Don't worry this app will not store your password information but would rather create a authentication token as a cookie on your browser.</small>
         <input ng-model="login.username" type="text" class="form-control" placeholder="Email address/ User Id" autofocus>
         <input ng-model="login.password" type="password" class="form-control" placeholder="Password" >
         <label class="checkbox">{{login.user}}
-            <input type="checkbox" value="remember-me"> Remember me
+            <input type="checkbox" value="remember-me" checked ng-disabled="true"> Remember me
         </label>
         <button class="btn btn-lg btn-primary btn-block" ng-click="signin()">Sign in</button>
     </div>
