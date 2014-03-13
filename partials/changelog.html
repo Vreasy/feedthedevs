@@ -14,33 +14,31 @@
         <div class="page-header">
             <h1>FEED THE DEVS- Pizza or Tomatoes! <br><small>Show your appreciation or disapproval to these new features.</small></h1>
         </div>
-        <div class="panel panel-info">
-            <div class="panel-heading">
-                <div class="pull-right">
-                    <a href="#" ng-click="previousPage()" ng-show="page != 1">Previous |</a>
-                    <a href="#" ng-click="nextPage()">Next</a>
-                </div>
+        <div class="row">
+            <div class="col-sm-12 text-right">
+                <a href="#" ng-click="previousPage()" ng-show="page != 1">Previous |</a>
+                <a href="#" ng-click="nextPage()">Next</a>
             </div>
-            <div class="panel-body" ng-show="showPanelLoader">
+        </div>
+        <div class="row" ng-show="showPanelLoader">
+            <div class="col-md-2 col-md-offset-5">
                 <img href="#" src="img/ajax-loader.gif">
             </div>
-            <div class="panel-body" ng-show="!showPanelLoader">
-                <div class="row">
-                    <ul class="list-group hover" >
-                        <li class="list-group-item" ng-repeat="event in events | orderBy: '-created_at'"
-                            ng-mouseover="mouseOver = true" ng-mouseleave="mouseOver = false">
+        </div>
+        <div class="row" ng-show="!showPanelLoader">
+            <ul class="list-group hover" >
+                <li class="list-group-item" ng-repeat="event in events | orderBy: '-created_at'"
+                    ng-mouseover="mouseOver = true" ng-mouseleave="mouseOver = false">
 
-                            <changelog event="event" ismouseover="mouseOver" error="errorMessage"></changelog>
+                    <changelog event="event" ismouseover="mouseOver" error="errorMessage"></changelog>
 
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="panel-footer">
-                <div class="pull-right">
-                    <a href="#" ng-click="previousPage()" ng-show="page != 1">Previous |</a>
-                    <a href="#" ng-click="nextPage()">Next</a>
-                </div>
+                </li>
+            </ul>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 text-right">
+                <a href="#" ng-click="previousPage()" ng-show="page != 1">Previous |</a>
+                <a href="#" ng-click="nextPage()">Next</a>
             </div>
         </div>
     </div>

@@ -30,7 +30,7 @@ var ChangeLogListCtrl = function ($scope, $location , CookieManager, $filter, We
                 }
                 $scope.showLoader = false;
                 $scope.showPanelLoader = false;
-
+                $(".jtooltip").tooltip();
             }, function(error) {
                 $scope.errorMessage = (error)?error:"Error communication to the server.";
             })
